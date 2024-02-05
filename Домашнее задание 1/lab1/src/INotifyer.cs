@@ -1,4 +1,4 @@
-namespace lab1.data;
+namespace lab1.Notifier;
 
 public interface INotifyer
 {

@@ -1,4 +1,4 @@
-﻿using lab1.data;
+﻿using lab1.Notifier;
 
 var account = new Account(50);
 
