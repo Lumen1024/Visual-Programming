@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="800"
+        d:DesignHeight="450"
+        x:Class="AvaloniaApp.MainWindow"
+        Title="AvaloniaApp">
+        <Window.Styles>
+                <Style Selector="Button">
+                        <Setter Property="Foreground" Value="Black"></Setter>
+                </Style>
+        </Window.Styles>
+    <Grid ColumnDefinitions="0.33*, 0.01, *" Background="White">
+        <StackPanel Grid.Column="0" VerticalAlignment="Top" Background="White">
+
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch" 
+                    BorderThickness="2">
+                <Button Click="ClickHandler" HorizontalAlignment="Stretch"
+                        Background="Khaki"> Khaki </Button>
+            </Border>
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch"
+                    BorderThickness="2">
+                <Button Click="ClickHandler" HorizontalAlignment="Stretch"
+                        Background="Red"> Red </Button>
+            </Border>
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch"
+                    BorderThickness="2">
+                <Button Click="ClickHandler"  HorizontalAlignment="Stretch"
+                        Background="MediumVioletRed"> MediumVioletRed </Button>
+            </Border>
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch"
+                    BorderThickness="2">
+                <Button Click="ClickHandler"  HorizontalAlignment="Stretch"
+                        Background="Bisque"> Bisque </Button>
+            </Border>
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch"
+                    BorderThickness="2">
+                <Button Click="ClickHandler" HorizontalAlignment="Stretch"
+                        Background="LemonChiffon"> LemonChiffon </Button>
+            </Border>
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch"
+                    BorderThickness="2">
+                <Button Click="ClickHandler"  HorizontalAlignment="Stretch"
+                        Background="PowderBlue"> PowderBlue </Button>
+            </Border>
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch"
+                    BorderThickness="2">
+                <Button Click="ClickHandler"  HorizontalAlignment="Stretch"
+                        Background="MintCream"> MintCream </Button>
+            </Border>
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch"
+                    BorderThickness="2">
+                <Button Click="ClickHandler"  HorizontalAlignment="Stretch"
+                        Background="Maroon"> Maroon </Button>
+            </Border>
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch"
+                    BorderThickness="2">
+                <Button Click="ClickHandler"  HorizontalAlignment="Stretch"
+                        Background="RosyBrown"> RosyBrown </Button>
+            </Border>
+            <Border BorderBrush="Black" HorizontalAlignment="Stretch"
+                    BorderThickness="2">
+                <Button Click="ClickHandler"  HorizontalAlignment="Stretch"
+                        Background="LightPink"> LightPink </Button>
+            </Border>
+        </StackPanel>
+        <GridSplitter Grid.Column="1"
+                      Background="Black"
+                      ResizeDirection="Columns" />
+        <Rectangle x:Name="colorRectangle"
+                   Grid.Column="2"
+                   Fill="Khaki" />
+    </Grid>
+</Window>
