@@ -30,7 +30,7 @@ public class Account
 
     private void Notification()
     {
-        Console.WriteLine();
+        //Console.WriteLine();
         _notifiers.ForEach(
             (item) =>
             {

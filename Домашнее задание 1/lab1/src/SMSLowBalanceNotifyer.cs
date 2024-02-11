@@ -14,6 +14,8 @@ public class SMSLowBalanceNotifyer : INotifyer
     public void Notify(int balance)
     {
         if (balance < _lowBalanceValue)
+        {
             Console.WriteLine(_phone + ": баланс меньше чем " + _lowBalanceValue);
+        }
     }
 }
