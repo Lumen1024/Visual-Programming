@@ -1,0 +1,267 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		WindowStartupLocation="CenterScreen"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		
+        mc:Ignorable="d"
+		d:DesignWidth="400" d:DesignHeight="570"
+		Width="400" Height="570"
+		MinWidth="400" MinHeight="520"
+        x:Class="AvaloniaApplication.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Calculator">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+
+	<Window.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="Foreground" Value="#FAEFF9"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Foreground" Value="#FAEFF9"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="Background" Value="#B2A59B"/>
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="Margin" Value="6"/>
+		</Style>
+
+
+
+		<Style Selector="Button.numpad">
+			<Setter Property="Background" Value="#DED0B6"/>
+			<Setter Property="FontSize" Value="30"/>
+			<Setter Property="FontWeight" Value="Black"/>
+		</Style>
+
+
+		<Style Selector="Border.main-framer">
+			<Setter Property="Padding" Value="6"/>
+			<Setter Property="BorderBrush" Value="#FAEED1"/>
+			<Setter Property="BorderThickness" Value="4"/>
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="Margin" Value="10"/>
+
+		</Style>
+	</Window.Styles>
+
+
+	<Grid RowDefinitions="auto,*"
+		  Background="#607274">
+
+		<Border Grid.Row="0"
+				Classes = "main-framer">
+			<TextBlock x:Name="display" FontSize="35"
+					   Text="{Binding Display}"
+					   Padding="30"
+					   TextAlignment="Center"/>
+		</Border>
+		<Border Grid.Row="1"
+				Classes = "main-framer">
+			<Grid RowDefinitions="*,*,*,*,*,*"
+				  ColumnDefinitions="*,*,*,*,*">
+				<Border Classes ="main-framer"
+						Margin="6,6,6,6"
+						BorderThickness="5"
+						CornerRadius="25,1,25,1"
+						Background="{Binding ErrorIndicator}">
+				</Border>
+				
+				<Button x:Name="button_floor" Grid.Row="0" Grid.Column="1"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						floor
+					</Button.CommandParameter>
+					floor</Button>
+				<Button x:Name="button_ceil" Grid.Row="0" Grid.Column="2"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						ceil
+					</Button.CommandParameter>
+					ceil
+				</Button>
+				<Button x:Name="button_fact" Grid.Row="1" Grid.Column="0"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						factorial
+					</Button.CommandParameter>
+					n!
+				</Button>
+				<Button x:Name="button_sin" Grid.Row="1" Grid.Column="1"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						sin
+					</Button.CommandParameter>
+					sin
+				</Button>
+				<Button x:Name="button_cos" Grid.Row="1" Grid.Column="2"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						cos
+					</Button.CommandParameter>
+					cos
+				</Button>
+				<Button x:Name="button_tg" Grid.Row="1" Grid.Column="3"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						tg
+					</Button.CommandParameter>
+					tg
+				</Button>
+				<Button x:Name="button_delen" FontSize="30" Grid.Row="1" Grid.Column="4"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						division
+					</Button.CommandParameter>	
+					÷
+				</Button>
+				<Button x:Name="button_mod" Grid.Row="2" Grid.Column="0"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						mod
+					</Button.CommandParameter>
+					mod
+				</Button>
+				<Button x:Name="button_impl" FontSize="30" Grid.Row="2" Grid.Column="4"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						implify
+					</Button.CommandParameter>
+					x
+				</Button>
+				<Button x:Name="button_stp" Grid.Row="3" Grid.Column="0"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						stp
+					</Button.CommandParameter>
+					x^y
+				</Button>
+				<Button x:Name="button_minus" FontSize="30" Grid.Row="3" Grid.Column="4"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						minus
+					</Button.CommandParameter>
+					-
+				</Button>
+				<Button x:Name="button_lg" Grid.Row="4" Grid.Column="0"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						lg
+					</Button.CommandParameter>
+					lg
+				</Button>
+				<Button x:Name="button_plus" FontSize="30" Grid.Row="4" Grid.Column="4"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						plus
+					</Button.CommandParameter>
+					+
+				</Button>
+				<Button x:Name="button_ln" Grid.Row="5" Grid.Column="0"
+						Command="{Binding OperatorClickedCommand}">
+					<Button.CommandParameter>
+						ln
+					</Button.CommandParameter>
+					ln
+				</Button>
+				
+				
+				<!-- Tools -->
+				<Button x:Name="button_invert" FontSize="24" Classes ="numpad" Grid.Row="5" Grid.Column="1"
+						Command="{Binding ReverseClickedCommand}">+/-</Button>
+				<Button x:Name="button_dot" Classes ="numpad" Grid.Row="5" Grid.Column="3"
+						Command="{Binding DotClickedCommand}">.</Button>
+				<Button x:Name="button_equals" FontSize="30" Grid.Row="5" Grid.Column="4"
+						Command="{Binding EqualsClickedCommand}">=</Button>
+				<Button x:Name="button_c" Grid.Row="0" Grid.Column="3"
+						Command="{Binding ClearClickedCommand}">C</Button>
+				<Button x:Name="button_div" Grid.Row="0" Grid.Column="4"
+						Command="{Binding UndoClickedCommand}">und</Button>
+				
+				<!-- Numpad -->
+				<Button x:Name="numpad_1" Classes ="numpad" Grid.Row="2" Grid.Column="1"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter> <sys:Int32>1</sys:Int32> </Button.CommandParameter>
+					1
+				</Button>
+				<Button x:Name="numpad_2" Classes ="numpad" Grid.Row="2" Grid.Column="2"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter>
+						<sys:Int32>2</sys:Int32>
+					</Button.CommandParameter>
+					2
+				</Button>
+				<Button x:Name="numpad_3" Classes ="numpad" Grid.Row="2" Grid.Column="3"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter>
+						<sys:Int32>3</sys:Int32>
+					</Button.CommandParameter>
+					3
+				</Button>
+				<Button x:Name="numpad_4" Classes ="numpad" Grid.Row="3" Grid.Column="1"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter>
+						<sys:Int32>4</sys:Int32>
+					</Button.CommandParameter>
+					4
+				</Button>
+				<Button x:Name="numpad_5" Classes ="numpad" Grid.Row="3" Grid.Column="2"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter>
+						<sys:Int32>5</sys:Int32>
+					</Button.CommandParameter>
+					5
+				</Button>
+				<Button x:Name="numpad_6" Classes ="numpad" Grid.Row="3" Grid.Column="3"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter>
+						<sys:Int32>6</sys:Int32>
+					</Button.CommandParameter>
+					6
+				</Button>
+				<Button x:Name="numpad_7" Classes ="numpad" Grid.Row="4" Grid.Column="1"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter>
+						<sys:Int32>7</sys:Int32>
+					</Button.CommandParameter>
+					7
+				</Button>
+				<Button x:Name="numpad_8" Classes ="numpad" Grid.Row="4" Grid.Column="2"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter>
+						<sys:Int32>8</sys:Int32>
+					</Button.CommandParameter>
+					8
+				</Button>
+				<Button x:Name="numpad_9" Classes ="numpad" Grid.Row="4" Grid.Column="3"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter>
+						<sys:Int32>9</sys:Int32>
+					</Button.CommandParameter>
+					9
+				</Button>
+				<Button x:Name="numpad_0" Classes ="numpad" Grid.Row="5" Grid.Column="2"
+						Command="{Binding NumpadClickedCommand}" CommandParameter="">
+					<Button.CommandParameter>
+						<sys:Int32>0</sys:Int32>
+					</Button.CommandParameter>
+					0
+				</Button>
+			</Grid>
+		</Border>
+	</Grid>
+
+
+</Window>
