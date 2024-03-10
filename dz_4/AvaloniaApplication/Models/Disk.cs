@@ -7,18 +7,13 @@ using System.Threading.Tasks;
 
 namespace AvaloniaApplication.Models
 {
-    internal class Disk : IFileSystemItem
+    internal class Disk(DriveInfo info) : IFileSystemItem
     {
-        public string Name => _info.Name;
+        public string Name => Info.Name;
 
         public string ImagePath => "/Assets/disk.svg";
 
-        public DriveInfo _info;
-
-        public Disk(DriveInfo info)
-        {
-            _info = info;
-        }
+        public DriveInfo Info = info;
     }
 }
 

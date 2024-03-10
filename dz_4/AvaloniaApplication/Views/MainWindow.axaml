@@ -3,110 +3,111 @@
         xmlns:vm="using:AvaloniaApplication.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="500"
-		Width="400" Height="500"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        Width="800" Height="500"
+        MinWidth="800" MinHeight="300"
         x:Class="AvaloniaApplication.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-		Background="#1e1e1e"
-		RequestedThemeVariant="Dark">
+        Background="rgba(30, 30, 30, 0.75)"
+        RequestedThemeVariant="Dark">
 
     <Design.DataContext>
-		<vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-	<Window.Styles>
-		<Style Selector="TextBlock">
-			<Setter Property="Foreground" Value="#dadada"/>
-		</Style>
-		<Style Selector="Button">
-			<Setter Property="Background" Value="#1e1e1e"/>
-			<Setter Property="CornerRadius" Value="5"/>
-			
-			<Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-				<Setter Property="Background" Value="#242424"/>
-			</Style>
-		</Style>
-	</Window.Styles>
+    <Window.Styles>
 
-	<Grid RowDefinitions="Auto,*" Margin="8">
-		
-		<!-- Up bar -->
-		<Border Background="#1e1e1e"
-				Grid.Row="0"
-				CornerRadius="5">
-			<Grid ColumnDefinitions="auto,*,auto">
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="#dadada" />
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#1e1e1e" />
+            <Setter Property="CornerRadius" Value="5" />
 
-				<Border Grid.Column="0"
-						CornerRadius="5"
-						Background="#242424">
-					<Button Grid.Column="2" Command="{Binding HomeCommand}">
-						<Svg Height="35" Width="35" Path="/Assets/home.svg"/>
-					</Button>
-				</Border>
-				
-				<Border Grid.Column="1"
-						CornerRadius="5"
-						Margin="10 0"
-						Background="#242424">
-					<TextBlock TextAlignment="Center"
-							    
-							   Margin="10 0"
-							   VerticalAlignment="Center"
-							   Text="{Binding CurrentPath}"/>
-				</Border>
-				
-				<Border Grid.Column="2"
-						CornerRadius="5"
-						Background="#242424">
-					<Button Grid.Column="2" Command="{Binding BackCommand}">
-						<Svg Height="35" Width="35" Path="/Assets/back.svg"/>
-					</Button>
-				</Border>
-				
-			</Grid>
-		</Border>
-		
-		<!-- List -->
-		<Border Grid.Row="1"
-				Background="#242424"
-				CornerRadius="10"
-				Margin="0 10 0 0">
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="#242424" />
+            </Style>
+        </Style>
 
-			<ScrollViewer>
-				<ListBox Background="#242424"
-						 Margin="10 7"
-						 SelectedItem="{Binding Selected}"
-						  DoubleTapped="TappedListBox"
-						 ItemsSource="{Binding Items}">
-				
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<Grid ColumnDefinitions="auto,*" Height="25">
+        <Style Selector="Border.content-panel">
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Background" Value="#242424" />
+        </Style>
 
-								<Svg Grid.Column="0" Width="25" Height="25" Path="{Binding ImagePath}"/>
-								<TextBlock Grid.Column="1"
-											Margin="10 0 0 0"
-											VerticalAlignment="Center"
-											Text="{Binding Name}"/>
-							</Grid>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
+    </Window.Styles>
 
-					<ListBox.Styles>
-						<Style Selector="ListBoxItem">
-							<Setter Property="HorizontalAlignment" Value="Stretch"/>
-							<Setter Property="CornerRadius" Value="5"/>
-							<Setter Property="Margin" Value="0 2"/>
-						</Style>
-						<Style Selector="ListBoxItem:pressed">
-							<Setter Property="Background" Value="DarkMagenta"/>
-						</Style>
-					</ListBox.Styles>
-				
-				</ListBox>
-			</ScrollViewer>
-		</Border>
-		
-	</Grid>
+    <!-- Main container -->
+    <Grid ColumnDefinitions="300,Auto,*" Margin="8">
+
+        <!-- Left side -->
+        <Grid RowDefinitions="60,Auto, *" Grid.Column="0">
+
+            <!-- Path bar -->
+            <Border Grid.Row="0" Classes="content-panel" Tapped="InputElement_OnTapped">
+                <TextBlock TextAlignment="Center"
+                           HorizontalAlignment="Stretch"
+                           Margin="8 0"
+                           VerticalAlignment="Center"
+                           MaxLines="4"
+                           Text="{Binding CurrentPath}" />
+            </Border>
+            <GridSplitter Grid.Row="1" Background="Transparent" Height="8" />
+
+            <!-- List -->
+            <Border Grid.Row="2" Classes="content-panel">
+
+                <ScrollViewer>
+                    <ListBox Background="#242424"
+                             Margin="10 7"
+                             SelectedItem="{Binding Selected}"
+                             DoubleTapped="TappedListBox"
+                             ItemsSource="{Binding Items}">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="auto,*" Height="25">
+                                    <Svg Grid.Column="0" Width="25" Height="25" Path="{Binding ImagePath}" />
+                                    <TextBlock Grid.Column="1"
+                                               Margin="10 0 0 0"
+                                               VerticalAlignment="Center"
+                                               Text="{Binding Name}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                        <ListBox.Styles>
+                            <Style Selector="ListBoxItem">
+                                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                <Setter Property="CornerRadius" Value="5" />
+                                <Setter Property="Margin" Value="0 2" />
+                            </Style>
+                            <Style Selector="ListBoxItem:pressed">
+                                <Setter Property="Background" Value="DarkMagenta" />
+                            </Style>
+                        </ListBox.Styles>
+
+                    </ListBox>
+                </ScrollViewer>
+            </Border>
+
+        </Grid>
+
+        <GridSplitter Grid.Column="1" Background="Transparent" Width="16" />
+
+        <!-- Right side -->
+        <Border Grid.Column="2"
+                Classes="content-panel">
+            <Grid Margin="8" RowDefinitions="*,Auto">
+                <Border CornerRadius="20" ClipToBounds="True">
+                        <Image Stretch="UniformToFill" Source="L:\Download\unsorted\picture(123mag.ru).png" />
+                </Border>
+                
+                
+                <TextBlock Grid.Row="1" TextAlignment= "Center" Margin="0 10 0 0">Lam.webm</TextBlock>
+            </Grid>
+        </Border>
+    </Grid>
+
+
 </Window>

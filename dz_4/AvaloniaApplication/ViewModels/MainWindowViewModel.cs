@@ -22,8 +22,8 @@ namespace AvaloniaApplication.ViewModels
 
         public ObservableCollection<IFileSystemItem> Items
         {
-            get { return _items; }
-            set { SetProperty(ref _items, value); }
+            get => _items;
+            set => SetProperty(ref _items, value);
         }
 
         private bool _homed = true;
@@ -32,9 +32,8 @@ namespace AvaloniaApplication.ViewModels
         {
             Home();
         }
-
-        [RelayCommand]
-        private void Back()
+        
+        public void Back()
         {
             foreach (var item in Items)
             {
@@ -79,10 +78,10 @@ namespace AvaloniaApplication.ViewModels
         {
             if (Selected is Disk)
             {
-                var directories = (Selected as Disk)._info.RootDirectory.GetDirectories();
-                var files = (Selected as Models.Disk)._info.RootDirectory.GetFiles();
+                var directories = (Selected as Disk).Info.RootDirectory.GetDirectories();
+                var files = (Selected as Models.Disk).Info.RootDirectory.GetFiles();
 
-                CurrentPath = (Selected as Disk)._info.RootDirectory.FullName;
+                CurrentPath = (Selected as Disk).Info.RootDirectory.FullName;
                 Items.Clear();
                 foreach (var dir in directories)
                 {
@@ -96,12 +95,12 @@ namespace AvaloniaApplication.ViewModels
             }
             else if (Selected is Models.Directory) 
             {
-                if ((Selected as Models.Directory)._info.Attributes.HasFlag(FileAttributes.System)) return;
+                if ((Selected as Models.Directory).Info.Attributes.HasFlag(FileAttributes.System)) return;
 
-                var directories = (Selected as Models.Directory)._info.GetDirectories();
+                var directories = (Selected as Models.Directory).Info.GetDirectories();
 
-                CurrentPath = TruncateString((Selected as Models.Directory)._info.FullName, 30);
-                var files = (Selected as Models.Directory)._info.GetFiles();
+                CurrentPath = TruncateString((Selected as Models.Directory).Info.FullName, 30);
+                var files = (Selected as Models.Directory).Info.GetFiles();
                 Items.Clear();
                 foreach (var dir in directories)
                 {
@@ -115,7 +114,7 @@ namespace AvaloniaApplication.ViewModels
             }
             else if (Selected is Models.File)
             {
-                ShowOpenWithDialog((Selected as Models.File)._info.FullName);
+                ShowOpenWithDialog((Selected as Models.File).Info.FullName);
             }
         }
 
@@ -131,7 +130,7 @@ namespace AvaloniaApplication.ViewModels
             if (input.Length > maxLength)
             {
                 // Обрезаем начало строки до нужной длины
-                return input.Substring(input.Length - maxLength);
+                return input;//input.Substring(input.Length - maxLength);
             }
             else
             {

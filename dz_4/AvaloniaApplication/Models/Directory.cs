@@ -7,17 +7,12 @@ using System.Threading.Tasks;
 
 namespace AvaloniaApplication.Models
 {
-    internal class Directory : IFileSystemItem
+    internal class Directory(DirectoryInfo info) : IFileSystemItem
     {
-        public string Name => _info.Name;
+        public string Name => Info.Name;
 
         public string ImagePath => "/Assets/directory.svg";
 
-        public DirectoryInfo _info;
-
-        public Directory(DirectoryInfo info)
-        {
-            _info = info;
-        }
+        public DirectoryInfo Info = info;
     }
 }

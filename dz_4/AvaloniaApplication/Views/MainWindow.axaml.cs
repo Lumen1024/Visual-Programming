@@ -22,5 +22,11 @@ namespace AvaloniaApplication.Views
 
             viewModel.ItemSelected();
         }
+
+        private void InputElement_OnTapped(object? sender, TappedEventArgs e)
+        {
+            if (DataContext is not ViewModels.MainWindowViewModel viewModel) return;
+            viewModel.Back();
+        }
     }
 }
