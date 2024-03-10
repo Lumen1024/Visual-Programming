@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace AvaloniaApplication.Models;
 
-namespace AvaloniaApplication.Models
+public interface IFileSystemItem
 {
-    public interface IFileSystemItem
-    {
-        public string Name { get; }
-        public string ImagePath { get; }
-    }
+    public string Name { get; }
+    public string Path { get; }
+    public string IconPath { get; }
 }

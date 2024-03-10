@@ -20,13 +20,24 @@ namespace AvaloniaApplication.Views
 
             if (DataContext is not ViewModels.MainWindowViewModel viewModel) return;
 
-            viewModel.ItemSelected();
+            viewModel.SingleTap();
         }
 
-        private void InputElement_OnTapped(object? sender, TappedEventArgs e)
+        private void BackTapped(object? sender, TappedEventArgs e)
         {
             if (DataContext is not ViewModels.MainWindowViewModel viewModel) return;
             viewModel.Back();
+        }
+
+        public void DoubleTappedListBox(object? sender, TappedEventArgs e)
+        {
+            if (e.Source is not IDataContextProvider provider) return;
+
+            if (provider.DataContext is not IFileSystemItem) return;
+
+            if (DataContext is not ViewModels.MainWindowViewModel viewModel) return;
+
+            viewModel.DoubleTap();
         }
     }
 }

@@ -44,7 +44,7 @@
         <Grid RowDefinitions="60,Auto, *" Grid.Column="0">
 
             <!-- Path bar -->
-            <Border Grid.Row="0" Classes="content-panel" Tapped="InputElement_OnTapped">
+            <Border Grid.Row="0" Classes="content-panel" Tapped="BackTapped">
                 <TextBlock TextAlignment="Center"
                            HorizontalAlignment="Stretch"
                            Margin="8 0"
@@ -61,13 +61,14 @@
                     <ListBox Background="#242424"
                              Margin="10 7"
                              SelectedItem="{Binding Selected}"
-                             DoubleTapped="TappedListBox"
+                             DoubleTapped="DoubleTappedListBox"
+                             Tapped="TappedListBox"
                              ItemsSource="{Binding Items}">
 
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid ColumnDefinitions="auto,*" Height="25">
-                                    <Svg Grid.Column="0" Width="25" Height="25" Path="{Binding ImagePath}" />
+                                    <Svg Grid.Column="0" Width="25" Height="25" Path="{Binding IconPath}" />
                                     <TextBlock Grid.Column="1"
                                                Margin="10 0 0 0"
                                                VerticalAlignment="Center"
@@ -100,11 +101,14 @@
                 Classes="content-panel">
             <Grid Margin="8" RowDefinitions="*,Auto">
                 <Border CornerRadius="20" ClipToBounds="True">
-                        <Image Stretch="UniformToFill" Source="L:\Download\unsorted\picture(123mag.ru).png" />
+                    <Image Stretch="UniformToFill" Source="{Binding Image}" />
                 </Border>
-                
-                
-                <TextBlock Grid.Row="1" TextAlignment= "Center" Margin="0 10 0 0">Lam.webm</TextBlock>
+
+
+                <TextBlock Grid.Row="1"
+                           TextAlignment="Center"
+                           Margin="0 10 0 0"
+                           Text="{Binding ImageName }"/>
             </Grid>
         </Border>
     </Grid>
