@@ -3,6 +3,7 @@
         xmlns:vm="using:AvaloniaApplication.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:AvaloniaApplication.Models"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
         Width="800" Height="500"
         MinWidth="800" MinHeight="300"
@@ -15,6 +16,10 @@
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
+    
+    <Window.Resources>
+        <models:PathConverter x:Key="PathConverter" />
+    </Window.Resources>
 
     <Window.Styles>
 
@@ -101,7 +106,7 @@
                 Classes="content-panel">
             <Grid Margin="8" RowDefinitions="*,Auto">
                 <Border CornerRadius="20" ClipToBounds="True">
-                    <Image Stretch="UniformToFill" Source="{Binding Image}" />
+                    <Image Stretch="UniformToFill" Source="{Binding Image, Converter={StaticResource PathConverter}, Mode=TwoWay}" />
                 </Border>
 
 

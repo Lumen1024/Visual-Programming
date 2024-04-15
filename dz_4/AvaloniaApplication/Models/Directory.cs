@@ -23,7 +23,7 @@ namespace AvaloniaApplication.Models
                 var files = rootInfo.GetFiles().ToList()
                     .Select(fileInfo =>
                     {
-                        if (new List<string>() { ".png", ".jpg", ".webm" }.Contains(fileInfo.Extension))
+                        if (new List<string>() { ".png", ".jpg", ".webm", ".jpeg" }.Contains(fileInfo.Extension))
                             return new Image(fileInfo) as IFileSystemItem;
                         return new File(fileInfo) as IFileSystemItem;
                     }).ToList();

@@ -11,7 +11,8 @@ namespace AvaloniaApplication.ViewModels
     {
         [ObservableProperty] private string _currentPath = string.Empty;
 
-        [ObservableProperty] private Bitmap? _image;
+        [ObservableProperty]
+        private string? _image;
 
         [ObservableProperty] private string _imageName = string.Empty;
 
@@ -43,7 +44,7 @@ namespace AvaloniaApplication.ViewModels
             _fileSystem.OnImagePublished += (path, name) =>
             {
                 Console.WriteLine(path);
-                //_image = new Bitmap(AssetLoader.Open(new Uri("path")));
+                Image = path;
                 ImageName = name;
             };
         }

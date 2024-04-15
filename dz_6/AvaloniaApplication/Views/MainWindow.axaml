@@ -1,0 +1,104 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:AvaloniaApplication.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApplication.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        RequestedThemeVariant="Dark"
+        Background="#1e1e1e"
+        Title="Weather App">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+    
+    <Window.Resources>
+        <views:TemperatureConverter x:Key="TemperatureConverter"/>
+        <views:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+    </Window.Resources>
+
+    
+
+    <Window.Styles>
+
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="#dadada" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style Selector="Border.content-panel">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Background" Value="#242424" />
+        </Style>
+
+    </Window.Styles>
+
+    <Grid>
+
+
+        <!-- Main container -->
+        <Grid Margin="5" IsVisible="{Binding !IsLoading}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Time zone -->
+            <Border Grid.Row="0" Grid.Column="0" Classes="content-panel">
+                <TextBlock FontWeight="Bold" Margin="0 40 0 0" HorizontalAlignment="Center" FontSize="70" Text="{Binding CurrentTime, Converter={StaticResource DateTimeToStringConverter}}"/>
+            </Border>
+
+            <!-- Temp zone -->
+            <Border Grid.Row="0" Grid.Column="1" Classes="content-panel">
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    Margin="0 30 0 0"
+                    FontWeight="Bold"
+                    FontSize="100"
+                    Text="{Binding Weather.Temperature, Converter={StaticResource TemperatureConverter}}" />
+
+            </Border>
+
+            <!-- Rain zone -->
+            <Border Grid.Row="1" Grid.Column="0" Classes="content-panel">
+                <Grid ColumnDefinitions="*,*">
+                    <Svg Width="130" Path="{Binding WeatherPicture}" />
+                    <TextBlock FontSize="20" Grid.Column="1" Text="{Binding Weather.Weather}" />
+                </Grid>
+            </Border>
+
+            <!-- Info zone -->
+            <Border Grid.Row="1" Grid.Column="1" Classes="content-panel">
+                <Grid
+                    RowDefinitions="*,*,*,*"
+                    ColumnDefinitions="*,*"
+                    Margin="20 0 0 0 ">
+
+                    <TextBlock Grid.Row="0" Grid.Column="0">Влажность:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0">Ветер:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0">Видимость:</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0">Давление:</TextBlock>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Weather.Humidity}" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Weather.WindSpeed}" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Weather.Visibility}" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Weather.Pressure}" />
+
+                </Grid>
+            </Border>
+
+        </Grid>
+
+        <Svg IsVisible="{Binding IsLoading}" Width="200" Path="/Assets/loading.svg"></Svg>
+    </Grid>
+</Window>
