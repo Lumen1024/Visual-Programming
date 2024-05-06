@@ -3,6 +3,7 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="App.axaml" value="MVVMAvalonia.csproj" />
         <entry key="Views/MainWindow.axaml" value="MVVMAvalonia.csproj" />
         <entry key="Views/Pages/DataGridView.axaml" value="MVVMAvalonia.csproj" />
         <entry key="Views/Pages/DataTreeView.axaml" value="MVVMAvalonia.csproj" />
