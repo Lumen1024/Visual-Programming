@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:viewModels="clr-namespace:MVVMAvalonia.ViewModels"
+        x:Class="MVVMAvalonia.Views.MainWindow"
+        x:DataType="viewModels:MainWindowViewModel"
+        Title="MVVMAvalonia">
+	<Grid RowDefinitions="Auto, *">
+		<ListBox SelectionMode="Single" 
+		         SelectedItem="{Binding Content}"
+		         ItemsSource="{Binding ViewModelCollection}">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Orientation="Horizontal"/>
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Header}"/>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ContentControl VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                        Grid.Row="1" Content="{Binding Content}"/>
+	</Grid>
+
+</Window>
